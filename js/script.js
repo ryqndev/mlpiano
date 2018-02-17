@@ -31,6 +31,9 @@ function bassLine(octave){
     
     
 }
+function chords(octave){
+    
+}
 
 function gC(type, note, delay){
     switch(type){
