@@ -11,7 +11,7 @@ window.onload = function () {
 	});
 };
 
-var chordProgression = ['amin', 'gmaj', 'cmaj', 'cmaj'];
+
 var octave = 3;
 var noteNum = {
     'c' : 0,
@@ -41,32 +41,51 @@ var bps = 120;
 
 
 function playMusic(){
+    var chordProgression = ['amin', 'gmaj', 'cmaj', 'cmaj'];
     
     //1. set tempo
     setBPM(102);
     
-    //2. set chords
-    //setInterval(prebuiltchords, bps*8000);
     
     setInterval(function(){
-        chords(chordProgression);
+        //2. set chords
+        prebuiltchords();
+        //chords(chordProgression);
+        
+        //3. set baseline
+        bassLine(chordProgression);
+        
     }, bps*8000);
     
-    //3. set baseline
-    
     //4. set melody
-    
+    //setInterval(melody, bps*8000);
+
     
     //5(?) add introduce verses/chorus/etc.
     
     
 }
+function melody(){
+    pN(noteNum['a'] + (octave+2)*12 , 0);
+    pN(noteNum['b'] + (octave+2)*12 , bps/2);
+    pN(noteNum['c'] + (octave+3)*12 , bps);
+    pN(noteNum['d'] + (octave+3)*12 , bps + bps/2);
+    pN(noteNum['e'] + (octave+3)*12 , bps*2);
+    pN(noteNum['a'] + (octave+3)*12 , bps*2 + bps/2);
+    pN(noteNum['g'] + (octave+3)*12 , bps*3);
+    pN(noteNum['f'] + (octave+3)*12 , bps*3 + bps*(3/4));
+    pN(noteNum['e'] + (octave+3)*12 , bps*4);
+}
+
 function setBPM(bpm){
     bps = (bpm/60);
     bps = 1.0/bps;
 }
-function bassLine(octave){
-    
+function bassLine(chordProgression){
+    for(i = 0; i < chordProgression.length; i++){
+        type = chordProgression[i].substr(1,5);
+        pO(parseInt(noteNum[chordProgression[i].substr(0,1)])+ (octave-1)*12,  bps*2*i);
+    }
     
 }
 function strumPattern(){
