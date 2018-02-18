@@ -10,9 +10,6 @@ window.onload = function () {
 		}
 	});
 };
-
-
-var octave = 3;
 var noteNum = {
     'c' : 0,
     'c#': 1,
@@ -36,16 +33,27 @@ var noteNum = {
     'cb': 11,
     'b#': 0,
 };
-var bps = 120;
+var chordProgression;
+var melody = {
+    'notes':[]
+};
+var octave = 3;
+var bps;
 
-
+function pullMusicData(){
+    bps = setBPM(song_data['bpm']);
+    chordProgression = song_data['chordProgression'];
+    
+    for(i = 0; i < song_data['melodyNotes'].length; i++){
+        melody['notes'].push([song_data['melodyNotes'][i], song_data['octave'][i], song_data['beats'][i]]);
+    }
+}
 
 function playMusic(){
-    var chordProgression = ['amin', 'gmaj', 'cmaj', 'cmaj'];
+    
     
     //1. set tempo
-    setBPM(102);
-    
+    pullMusicData();
     
     setInterval(function(){
         //2. set chords
@@ -55,33 +63,28 @@ function playMusic(){
         //3. set baseline
         bassLine(chordProgression);
         
-        melody();
+        extractMelody();
         
     }, bps*8000);
     
     //4. set melody
     //setInterval(melody, bps*8000);
-
+    //extractMelody();
     
     //5(?) add introduce verses/chorus/etc.
     
     
 }
-function melody(){
-    pN(noteNum['a'] + (octave+2)*12 , 0);
-    pN(noteNum['b'] + (octave+2)*12 , bps/2);
-    pN(noteNum['c'] + (octave+3)*12 , bps);
-    pN(noteNum['d'] + (octave+3)*12 , bps + bps/2);
-    pN(noteNum['e'] + (octave+3)*12 , bps*2);
-    pN(noteNum['a'] + (octave+3)*12 , bps*2 + bps/2);
-    pN(noteNum['g'] + (octave+3)*12 , bps*3);
-    pN(noteNum['f'] + (octave+3)*12 , bps*3 + bps*(3/4));
-    pN(noteNum['e'] + (octave+3)*12 , bps*4);
+function extractMelody(){
+    for(j = 0; j < melody['notes'].length; j++){
+        pN(noteNum[melody['notes'][j][0]] + (melody['notes'][j][1])*12, (melody['notes'][j][2]+8)*bps);
+    }
 }
 
 function setBPM(bpm){
-    bps = (bpm/60);
-    bps = 1.0/bps;
+    var beats = (bpm/60);
+    beats = 1.0/beats;
+    return beats;
 }
 function bassLine(chordProgression){
     for(i = 0; i < chordProgression.length; i++){
