@@ -44,15 +44,15 @@ smh my brother kept playing it on repeat like what stop it it ruins it
 <br>
 anyways, this is the json notation
 <br>
->
-var Riptide_VanceJoy = {
-    'bpm': 102,
-    'chordProgression': ['am', 'g', 'c'],
-    'noteLength' : 9,
-    'melodyNotes': ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'f', 'e'],
-    'octave'     : [ 4 ,  4 ,  5 ,  5 ,  5 ,  5 ,  5 ,  5  , 5 ],
-    'beats'      : [ 0 , 0.5, 1  , 1.5,  2 , 2.5,  3 , 3.5 , 4 ]
-}
+
+>var Riptide_VanceJoy = {
+>    'bpm': 102,
+>    'chordProgression': ['am', 'g', 'c'],
+>    'noteLength' : 9,
+>    'melodyNotes': ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'f', 'e'],
+>    'octave'     : [ 4 ,  4 ,  5 ,  5 ,  5 ,  5 ,  5 ,  5  , 5 ],
+>    'beats'      : [ 0 , 0.5, 1  , 1.5,  2 , 2.5,  3 , 3.5 , 4 ]
+>}
 
 <br>
 Extra note: since vance joy's song is literally the same chord progression the entire 3 minutes, i don't need to add any extra identifiers to the song, however, I will add that later. For now, the entire thing is hardcoded as one song and not broken up
