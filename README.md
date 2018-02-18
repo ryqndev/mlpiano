@@ -5,3 +5,6 @@ Machine Learning program that will take a chord progression and using machine le
 <br>
 
 mlpiano uses MIDI.js, an open-source midi playing framework to play music
+
+
+First, I need to write some program that can play basic chords
