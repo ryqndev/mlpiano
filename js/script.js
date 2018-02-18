@@ -55,6 +55,8 @@ function playMusic(){
         //3. set baseline
         bassLine(chordProgression);
         
+        melody();
+        
     }, bps*8000);
     
     //4. set melody
