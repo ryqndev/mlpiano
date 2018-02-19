@@ -6,7 +6,6 @@ window.onload = function () {
 			console.log(state, progress);
 		},
 		onsuccess: function() {
-            pullMusicData();
             playMusic();
 		}
 	});
@@ -46,65 +45,44 @@ function pullMusicData(){
     chordProgression = song_data['chordProgression'];
     
     for(i = 0; i < song_data['melodyNotes'].length; i++){
-        melody['notes'].push([song_data['melodyNotes'][i], (song_data['beats'][i])*bps]);
+        melody['notes'].push([song_data['melodyNotes'][i], song_data['octave'][i], song_data['beats'][i]]);
     }
 }
 
 function playMusic(){
+    
+    
     //1. set tempo
-    //pullMusicData();
-    var play = true;
+    pullMusicData();
+    console.log(melody['notes'].length);
+    console.log(melody['notes'][melody['notes'].length-2]);
+    console.log(melody['notes'][melody['notes'].length-1]);
+    extractMelody();
+    
+    
+    //4. set melody
+    //setInterval(melody, bps*8000);
     //extractMelody();
     
-    MIDI.chordOn(0,[57, 60, 64], 102, 2);
-    /*
-    setInterval(function(){
-        //2. set chords
-        //prebuiltchords();
-        //chords(chordProgression);
-        
-        //3. set baseline
-        //bassLine(chordProgression);
-        if(play){
-            extractMelody();
-            play = false;
-        }
-    }, bps*8000);
-    //4. set melody
-    */
-    //extractMelody();
     //5(?) add introduce verses/chorus/etc.
     
     
 }
 function extractMelody(){
     for(j = 0; j < melody['notes'].length; j++){
-        playDelayedNote(j);   
+        pN(noteNum[melody['notes'][j][0]] + (melody['notes'][j][1])*12, (melody['notes'][j][2]+3)*bps);
     }
-}
-
-function playDelayedNote(j){
-    setTimeout(function(){
-            pN(melody['notes'][j][0], melody['notes'][j][1]);
-    }, 1000)
 }
 
 function setBPM(bpm){
     var beats = (bpm/60);
     beats = 1.0/beats;
-    return beats; 
+    return beats;
 }
 function bassLine(chordProgression){
     for(i = 0; i < chordProgression.length; i++){
-        type = chordProgression[i].substr(2,5);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/4);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/2);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*(3/4));
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.25);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.5);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.75);
+        type = chordProgression[i].substr(1,5);
+        pO(parseInt(noteNum[chordProgression[i].substr(0,1)])+ (octave-1)*12,  bps*2*i);
     }
     
 }
@@ -112,13 +90,11 @@ function strumPattern(){
 
 }
 
-
-
 //given a chord progression
 function chords(chordProgression){
     for(i = 0; i < chordProgression.length; i++){
-        type = chordProgression[i].substr(2,6);
-        pC(type, parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave+1)*12,  bps*2*i);
+        type = chordProgression[i].substr(1,5);
+        pC(type, parseInt(noteNum[chordProgression[i].substr(0,1)])+ (octave+1)*12,  bps*2*i);
     }
 }
 
@@ -226,5 +202,5 @@ function pN(note, delay){
     var vel = 127;
     MIDI.setVolume(num, 127);
     MIDI.noteOn(num, note, vel, delay);
-    MIDI.noteOff(num, note, delay + 1);
+    MIDI.noteOff(num, note, delay + 0.5);
 }

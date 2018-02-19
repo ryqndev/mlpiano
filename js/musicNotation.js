@@ -16,14 +16,26 @@ Extra note: since vance joy's song is literally the same chord progression the e
 
 Extra thanks to the people at midi.js who made the music playing software open source because I really didn't wnat to write that entire thing as well. I'm already reinventing the wheel here but the other musical software notation was hard for me to understand. If I build it from ground up, I'll be able to navigate everything better
 */
-
+//'e', 'a', 'g', 'f', 'e', 'd', 'e', 'd', 'e', 'g', 'e', 'd', 'e', 'd', 'e', 'd', 'e' ,'d', 'e', 'd' ,'c', 'a', 'a', 'g', 'e', 'c', 'a', 'g', 'e'
 var Riptide_VanceJoy = {
     'bpm': 102,
-    'chordProgression': ['am', 'g', 'c'],
-    'noteLength' : 9,
-    'melodyNotes': ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'f', 'e'],
-    'octave'     : [ 4 ,  4 ,  5 ,  5 ,  5 ,  5 ,  5 ,  5  , 5 ],
-    'beats'      : [ 0 , 0.5, 1  , 1.5,  2 , 2.5,  3 , 3.5 , 4 ]
+    'chordProgression': ['a min', 'g maj', 'c maj', 'c maj'],
+    'melodyNotes': [57, 59, 60, 62, 64, 69, 67, 65, 64, 57, 59, 60, 62, 64, 69, 67, 65, 64, 62, 64, 62, 64, 67, 64, 62, 64, 62, 64, 62, 64, 62,60 ],
+    'beats'      : [ 0 , 0.5, 1  , 1.5,  2 , 2.5,  3 , 3.5 , 4, 8, 8.5 ,9 ,9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.66, 16, 16.5, 17, 17.5, 18, 18.5 ,19, 19.5,20, 20.33, 20.5, 23.66, 24, 26, 28, 31.5, 32, 34, 36, 40]
+}
+
+var GoodLife_OneRepublic = {
+    'bpm': 52,
+    'chordProgression': ['g maj', 'c maj', 'e min', 'd maj'],
+    'melodyNotes': [],
+    'beats'      : []
+}
+
+var HeySoulSister_Train = {
+    'bpm': 55,
+    'chordProgression': ['abmaj', 'ebmaj', 'f min', 'c#maj'],
+    'melodyNotes': [],
+    'beats'      : []
 }
 
 var song_data = Riptide_VanceJoy;
