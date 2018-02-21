@@ -6,7 +6,6 @@ window.onload = function () {
 			console.log(state, progress);
 		},
 		onsuccess: function() {
-            pullMusicData();
             playMusic();
 		}
 	});
@@ -38,6 +37,7 @@ var chordProgression;
 var melody = {
     'notes':[]
 };
+var patternLength = 16;
 var octave = 3;
 var bps;
 
@@ -50,109 +50,94 @@ function pullMusicData(){
     }
 }
 
+
 function playMusic(){
     //1. set tempo
-    //pullMusicData();
-    var play = true;
-    //extractMelody();
+    pullMusicData();
     
-    MIDI.chordOn(0,[57, 60, 64], 102, 2);
-    /*
-    setInterval(function(){
-        //2. set chords
-        //prebuiltchords();
-        //chords(chordProgression);
-        
-        //3. set baseline
-        //bassLine(chordProgression);
-        if(play){
-            extractMelody();
-            play = false;
-        }
-    }, bps*8000);
+    //2. set chords
+    //prebuiltchords();
+    chords(chordProgression);
+    
+    //3. set baseline
+    bassLine(chordProgression);
+    
     //4. set melody
-    */
-    //extractMelody();
-    //5(?) add introduce verses/chorus/etc.
+    extractMelody();
     
-    
+    //5(?) add introduce verses/chorus/etc   
 }
 function extractMelody(){
     for(j = 0; j < melody['notes'].length; j++){
-        playDelayedNote(j);   
+        pN(melody['notes'][j][0], melody['notes'][j][1]);
     }
 }
-
-function playDelayedNote(j){
-    setTimeout(function(){
-            pN(melody['notes'][j][0], melody['notes'][j][1]);
-    }, 1000)
-}
-
 function setBPM(bpm){
     var beats = (bpm/60);
     beats = 1.0/beats;
     return beats; 
 }
 function bassLine(chordProgression){
-    for(i = 0; i < chordProgression.length; i++){
-        type = chordProgression[i].substr(2,5);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/4);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/2);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*(3/4));
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.25);
-        pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.5);
-        //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.75);
+    for(j = 1; j <= patternLength; j++){
+        for(i = 0; i < chordProgression.length; i++){
+            type = chordProgression[i].substr(2,5);
+            pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i+ j*8*bps);
+            //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/4 + j*8*bps);
+            pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps/2 + j*8*bps);
+            //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*(3/4) + j*8*bps);
+            pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps + j*8*bps);
+            //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.25 + j*8*bps);
+            pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.5 + j*8*bps);
+            //pO(parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave-1)*12,  bps*2*i + bps*1.75 + j*8*bps);
+        }
     }
     
 }
 function strumPattern(){
 
 }
-
-
-
 //given a chord progression
 function chords(chordProgression){
-    for(i = 0; i < chordProgression.length; i++){
-        type = chordProgression[i].substr(2,6);
-        pC(type, parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave+1)*12,  bps*2*i);
+    for(j = 1; j <= patternLength; j++){
+        for(i = 0; i < chordProgression.length; i++){
+            type = chordProgression[i].substr(2,6);
+            pC(type, parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave+1)*12,  bps*2*i + j*8*bps);
+        }
     }
 }
-
 //prebuilt chords and strum pattern for Riptide
 function prebuiltchords(){  
-    pC('min', 57, 0);
-    pC('min', 57, bps/2);
-    //measure 2
-    pC('min', 57, bps + bps/4);
-    pC('min', 57, bps + bps/2);
-    pC('min', 57, bps + bps*(3/4));
-    //measure 3
-    pC('maj', 55, bps*2);
-    pC('maj', 55, bps*2 + bps/2);
-    //measure 4
-    pC('maj', 55, bps*3 + bps/4);
-    pC('maj', 55, bps*3 + bps/2);
-    pC('maj', 55, bps*3 + bps*(3/4));
-    //measure 5
-    pC('maj', 48, bps*4);
-    pC('maj', 48, bps*4 + bps/2);
-    pC('maj', 48, bps*4 + bps*(3/4));
-    //measure 6
-    pC('maj', 48, bps*5 + bps/4);
-    pC('maj', 48, bps*5 + bps/2);
-    pC('maj', 48, bps*5 + bps*(3/4));
-    //measure 7
-    pC('maj', 48, bps*6);
-    pC('maj', 48, bps*6 + bps/2);
-    pC('maj', 48, bps*6 + bps*(3/4));
-    //measure 8
-    pC('maj', 48, bps*7 + bps/4);
-    pC('maj', 48, bps*7 + bps/2);
-    pC('maj', 48, bps*7 + bps*(3/4));
+    for(j = 1; j <= patternLength; j++){
+        pC('min', 57, 0);
+        pC('min', 57, bps/2 + j*8*bps);
+        //measure 2
+        pC('min', 57, bps + bps/4 + j*8*bps);
+        pC('min', 57, bps + bps/2 + j*8*bps);
+        pC('min', 57, bps + bps*(3/4) + j*8*bps);
+        //measure 3
+        pC('maj', 55, bps*2 + j*8*bps);
+        pC('maj', 55, bps*2 + bps/2 + j*8*bps);
+        //measure 4
+        pC('maj', 55, bps*3 + bps/4 + j*8*bps);
+        pC('maj', 55, bps*3 + bps/2 + j*8*bps);
+        pC('maj', 55, bps*3 + bps*(3/4) + j*8*bps);
+        //measure 5
+        pC('maj', 48, bps*4 + j*8*bps);
+        pC('maj', 48, bps*4 + bps/2 + j*8*bps);
+        pC('maj', 48, bps*4 + bps*(3/4) + j*8*bps);
+        //measure 6
+        pC('maj', 48, bps*5 + bps/4 + j*8*bps);
+        pC('maj', 48, bps*5 + bps/2 + j*8*bps);
+        pC('maj', 48, bps*5 + bps*(3/4) + j*8*bps);
+        //measure 7
+        pC('maj', 48, bps*6 + j*8*bps);
+        pC('maj', 48, bps*6 + bps/2 + j*8*bps);
+        pC('maj', 48, bps*6 + bps*(3/4) + j*8*bps);
+        //measure 8
+        pC('maj', 48, bps*7 + bps/4 + j*8*bps);
+        pC('maj', 48, bps*7 + bps/2 + j*8*bps);
+        pC('maj', 48, bps*7 + bps*(3/4) + j*8*bps);
+    }
 }
 
 //plays a chord given chord type, root note, and delay, will add inversions

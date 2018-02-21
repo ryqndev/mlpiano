@@ -70,7 +70,7 @@ function playMusic(){
 }
 function extractMelody(){
     for(j = 0; j < melody['notes'].length; j++){
-        pN(noteNum[melody['notes'][j][0]] + (melody['notes'][j][1])*12, (melody['notes'][j][2]+3)*bps);
+        pN(noteNum[melody['notes'][j][0]] + (melody['notes'][j][1])*12, (melody['notes'][j][2])*bps);
     }
 }
 
