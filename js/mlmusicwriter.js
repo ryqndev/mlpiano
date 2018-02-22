@@ -4,12 +4,17 @@ var c3 = [];
 var c4 = [];
 
 /*
-Writing the data for the not occurence
+Writing the data for the not occuren
 
 */
 var noteOccurence = {
-    "n"
+    "chord1": {},
+    "chord2": {},
+    "chord3": {},
+    "chord4": {}
 }
+var notePatterns;
+
 //input will be the chord progression. 
 //will be trained using melodies of different songs 
 var chordInput = [[52, 56, 59], [59, 63, 66], [49,52, 56], [57, 61, 64]];
@@ -18,6 +23,11 @@ function analyzeDataSet(){
     divideMelodyIntoChords(Demons_ImagineDragons);
     divideMelodyIntoChords(HeySoulSister_Train);
     y = [c1,c2,c3,c4];
+    findOccurenceOfNote();
+    displayNoteOccurence(y);
+}
+function displayNoteOccurence(y){
+    
 }
 function divideMelodyIntoChords(songData){
     for(let i = 0; i < songData['beats'].length; i++){
@@ -33,12 +43,22 @@ function divideMelodyIntoChords(songData){
         }
     }
 }
-
+//setup functions
 function findOccurenceOfNote(){
-    
-    
+    for(let i = 24; i <= 107; i++){
+        noteOccurence["chord1"][i] = 0;
+        noteOccurence["chord2"][i] = 0;
+        noteOccurence["chord3"][i] = 0;
+        noteOccurence["chord4"][i] = 0;
+    }
+    for(let i = 1; i < 5; i++){
+        var name = 'c'+ i;
+        var chordName = 'chord'+ i;
+        for(let j = 0; j < window[name].length; j++){
+            noteOccurence[chordName][window[name][j]] = noteOccurence[chordName][window[name][j]] + 1;
+        }
+    }
 }
-
 
 //deeplearning.js base code
 /*
