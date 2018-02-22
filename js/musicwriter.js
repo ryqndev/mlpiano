@@ -95,6 +95,8 @@ function chords(chordProgression){
     for(i = 0; i < chordProgression.length; i++){
         type = chordProgression[i].substr(1,5);
         pC(type, parseInt(noteNum[chordProgression[i].substr(0,1)])+ (octave+1)*12,  bps*2*i);
+        console.log(type);
+        console.log(parseInt(noteNum[chordProgression[i].substr(0,1)])+ (octave+1)*12);
     }
 }
 

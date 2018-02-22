@@ -52,6 +52,9 @@ function pullMusicData(){
 
 
 function playMusic(){
+    
+    analyzeDataSet();
+
     //1. set tempo
     pullMusicData();
     
@@ -102,6 +105,7 @@ function chords(chordProgression){
         for(i = 0; i < chordProgression.length; i++){
             type = chordProgression[i].substr(2,6);
             pC(type, parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave+1)*12,  bps*2*i + j*8*bps);
+            //console.log(type,parseInt(noteNum[chordProgression[i].substr(0,2).replace(/\s+/, "")])+ (octave+1)*12 );
         }
     }
 }
