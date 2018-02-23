@@ -62,3 +62,13 @@ Extra note: since vance joy's song is literally the same chord progression the e
 <br>
 
 Extra thanks to the people at midi.js who made the music playing software open source because I really didn't wnat to write that entire thing as well. I'm already reinventing the wheel here but the other musical software notation was hard for me to understand. If I build it from ground up, I'll be able to navigate everything better
+
+<br>
+
+----
+
+# Melody Generation
+
+The melody generation will be done by calculating the occurence of certain notes during certain chord progressions. With that, a probability generator will calculate which notes should be played. After that, we will add that melody to our current data and as more melodies are generated, the probabilities will shift and thus the machine will develop it's own pattern of recognition
+
+

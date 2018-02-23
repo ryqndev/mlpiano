@@ -41,14 +41,14 @@ const Demons_ImagineDragons = {
     'melodyNotes': [64, 64, 71, 68, 66, 64, 64, 71, 68, 66, 64, 64, 73, 68, 66, 64, 64, 69, 69, 69, 71, 71, 71, 71, 68, 71, 71, 71, 71, 76, 75,73, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69,68, 68],
     'beats': [7.25, 7.5, 7.75, 8.5, 9, 9.25, 9.5, 9.75, 10.5, 11, 11.25, 11.5, 11.75, 12.5, 13, 13.25, 13.5, 13.75, 14.25, 14.75, 16.25, 16.5, 16.75, 17, 17.33, 17.67, 18.25, 18.5, 18.75, 19, 19.33, 19.67, 20.25]
 }
-const FourChords_Generic = {
+var MathematicalMelody_MLPiano = {
     'bpm': 55,
-    'chordProgression': ['abmaj', 'ebmaj', 'f min', 'c#maj'],
+    'chordProgression': ['e maj', 'b maj', 'c#min', 'a maj'],
     'melodyNotes': [],
     'beats'      : []
 }
 
-var song_data = Demons_ImagineDragons;
+var song_data = MathematicalMelody_MLPiano;
 /*
     the melody section of the JSON will be composed a key-value pair of note-beatcount
     

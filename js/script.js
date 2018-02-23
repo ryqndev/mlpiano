@@ -61,7 +61,7 @@ function playMusic(){
     //3. set baseline
     bassLine(chordProgression);
     //4. set melody
-    extractMelody();
+    //extractMelody();
     
     //5(?) add introduce verses/chorus/etc   
 }

@@ -1,6 +1,4 @@
-var randomColorGenerator = function () { 
-    return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
-};
+
 function displayNoteOccurence(){
     displayChord1();
     displayChord2();
@@ -18,7 +16,8 @@ function displayChord1(){
             labels: noteName1,
             datasets: [{
                 label: '# Chord 1/Note Occurence',
-                data: noteFrequency1
+                data: noteFrequency1,
+                backgroundColor: '#8c7efc'
             }]
         },
         options: {
@@ -48,6 +47,7 @@ function displayChord2(){
             datasets: [{
                 label: '# Chord 2/Note Occurence',
                 data: noteFrequency2,
+                backgroundColor: '#ff9554'
             }]
         },
         options: {
@@ -57,7 +57,7 @@ function displayChord2(){
                     ticks: {
                         min: 0,
                         max: 10,
-                        stepSize: 2,
+                        stepSize: 1,
                         beginAtZero:true
                     }
                 }]
@@ -77,6 +77,7 @@ function displayChord3(){
             datasets: [{
                 label: '# Chord 3/Note Occurence',
                 data: noteFrequency3,
+                backgroundColor: '#85e27c'
             }]
         },
         options: {
@@ -86,7 +87,7 @@ function displayChord3(){
                     ticks: {
                         min: 0,
                         max: 10,
-                        stepSize: 2,
+                        stepSize: 1,
                         beginAtZero:true
                     }
                 }]
@@ -105,6 +106,7 @@ function displayChord4(){
             datasets: [{
                 label: '# Chord 4/Note Occurence',
                 data: noteFrequency4,
+                backgroundColor: '#89e4ed'
             }]
         },
         options: {
@@ -114,7 +116,7 @@ function displayChord4(){
                     ticks: {
                         min: 0,
                         max: 10,
-                        stepSize: 2,
+                        stepSize: 1,
                         beginAtZero:true
                     }
                 }]

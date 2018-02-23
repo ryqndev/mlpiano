@@ -1,19 +1,11 @@
-var c1 = [];
-var c2 = [];
-var c3 = [];
-var c4 = [];
-
-/*
-Writing the data for the not occuren
-
-*/
+var c1 = [], c2 = [], c3 = [], c4 = [];
 var noteOccurence = {
     "chord1": {},
     "chord2": {},
     "chord3": {},
     "chord4": {}
-}
-var notePatterns;
+};
+var artificialMelody = [];
 
 //input will be the chord progression. 
 //will be trained using melodies of different songs 
@@ -25,6 +17,7 @@ function analyzeDataSet(){
     y = [c1,c2,c3,c4];
     findOccurenceOfNote();
     displayNoteOccurence();
+    generateBeats();
 }
 function divideMelodyIntoChords(songData){
     for(let i = 0; i < songData['beats'].length; i++){
@@ -42,7 +35,7 @@ function divideMelodyIntoChords(songData){
 }
 //setup functions
 function findOccurenceOfNote(){
-    for(let i = 48; i <= 83; i++){
+    for(let i = 56; i <= 79; i++){
         noteOccurence["chord1"][i] = 0;
         noteOccurence["chord2"][i] = 0;
         noteOccurence["chord3"][i] = 0;
@@ -56,62 +49,27 @@ function findOccurenceOfNote(){
         }
     }
 }
-
-//deeplearning.js base code
-/*
-
-const a = dl.variable(dl.scalar(Math.random()));
-const b = dl.variable(dl.scalar(Math.random()));
-const c = dl.variable(dl.scalar(Math.random()));
-const learningRate = 0.01;
-const optimizer = dl.train.sgd(learningRate);
-function predict(input) {
-  // y = a * x ^ 2 + b * x + c
-  return dl.tidy(() => {
-    const x = dl.scalar(input);
-
-    const ax2 = a.mul(x.square());
-    const bx = b.mul(x);
-    const y = ax2.add(bx).add(c);
-
-    return y;
-  });
-}
-function loss(prediction, actual){
-  const error = dl.scalar(actual).sub(prediction).square();
-  return error;
-}
-async function train(xs, ys, numIterations, done) {
-  let currentIteration = 0;
-  for (let iter = 0; iter < numIterations; iter++) {
-    for (let i = 0; i < xs.length; i++) {
-      optimizer.minimize(() => {
-        const pred = predict(xs[i]);
-        const predLoss = loss(pred, ys[i]);
-        return predLoss;
-      });
+//probability generator cares more about processing power than memory. With higher values, however, this will probably not work
+//just kidding I'm an idiot, I litearlly already have this function written
+function probabilityGenerator(){
+    for(let j = 1; j < 5; j++){
+        var chordName = 'c'+ j;
+        for(let i = 0, len = chordName.length; i < len; i++){
+            i = 
+        }
     }
-    await dl.nextFrame();
-  }
-  done();
 }
-function test(xs, ys) {
-  dl.tidy(() => {
-    const predictedYs = xs.map(predict);
-    console.log('Expected', ys);
-    console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
-  })
+function generateMelody(){
+    for(let i = 0; i < 16; i += 0.5){
+        
+        MathematicalMelody_MLPiano['melody'].push(i);
+    }
+    console.log(MathematicalMelody_MLPiano['melody']);
+    
+    
 }
-const data = {
-  xs: [0, 1, 2, 3],
-  ys: [1.1, 5.9, 16.8, 33.9]
-};
-console.log('Before training: using random coefficients')
-test(data.xs, data.ys);
-train(data.xs, data.ys, 50, () => {
-  console.log(
-      `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
-  test(data.xs, data.ys);
-});
-
-*/
+function generateBeats(){
+    for(let i = 0; i < 16; i += 0.5){
+        MathematicalMelody_MLPiano['beats'].push(i);
+    }
+}
