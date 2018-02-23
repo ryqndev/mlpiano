@@ -68,8 +68,9 @@ function generatedMelody(){
     return final;
 }
 function generateMelody(){
-    MathematicalMelody_MLPiano['melody'].push(generatedMelody());
-    console.log(MathematicalMelody_MLPiano['melody']);
+    MathematicalMelody_MLPiano['melodyNotes'] = generatedMelody();
+    console.log(MathematicalMelody_MLPiano['melodyNotes']);
+    console.log(MathematicalMelody_MLPiano['beats']);
 }
 function generateBeats(){
     for(let i = 0; i < 16; i += 0.5){

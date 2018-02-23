@@ -46,7 +46,7 @@ function pullMusicData(){
     chordProgression = song_data['chordProgression'];
     
     for(i = 0; i < song_data['melodyNotes'].length; i++){
-        melody['notes'].push([song_data['melodyNotes'][i], (song_data['beats'][i])*bps]);
+        melody['notes'].push([song_data['melodyNotes'][i], (song_data['beats'][i]+8)*bps]);
     }
 }
 
@@ -57,11 +57,11 @@ function playMusic(){
     pullMusicData();
     //2. set chords
     //prebuiltchords();
-    chords(chordProgression);
+    //chords(chordProgression);
     //3. set baseline
     bassLine(chordProgression);
     //4. set melody
-    //extractMelody();
+    extractMelody();
     
     //5(?) add introduce verses/chorus/etc   
 }
