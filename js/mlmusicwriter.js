@@ -55,12 +55,12 @@ function findOccurenceOfNote(){
 function generatedMelody(){
     var final = [];
     //how many chord progressions of melody???
-    for(let k = 0; k < 3; k++){
+    for(let k = 0; k < 6; k++){
         //for every chord
         for(let j = 1; j < 5; j++){
             var chordData = 'c'+ j;
             //every note
-            for(let i = 0; i < 4; i++){
+            for(let i = 0; i < 8; i++){
                 final.push(window[chordData][Math.floor(Math.random()*window[chordData].length)]);
             }
         }
@@ -73,7 +73,7 @@ function generateMelody(){
     console.log(MathematicalMelody_MLPiano['beats']);
 }
 function generateBeats(){
-    for(let i = 0; i < 16; i += 0.5){
+    for(let i = 0; i < 41; i += 0.25){
         MathematicalMelody_MLPiano['beats'].push(i);
     }
 }
