@@ -17,6 +17,7 @@ function analyzeDataSet(){
     y = [c1,c2,c3,c4];
     findOccurenceOfNote();
     displayNoteOccurence();
+    generateMelody();
     generateBeats();
 }
 function divideMelodyIntoChords(songData){
@@ -51,22 +52,24 @@ function findOccurenceOfNote(){
 }
 //probability generator cares more about processing power than memory. With higher values, however, this will probably not work
 //just kidding I'm an idiot, I litearlly already have this function written
-function probabilityGenerator(){
-    for(let j = 1; j < 5; j++){
-        var chordName = 'c'+ j;
-        for(let i = 0, len = chordName.length; i < len; i++){
-            i = 
+function generatedMelody(){
+    var final = [];
+    //how many chord progressions of melody???
+    for(let k = 0; k < 3; k++){
+        //for every chord
+        for(let j = 1; j < 5; j++){
+            var chordData = 'c'+ j;
+            //every note
+            for(let i = 0; i < 4; i++){
+                final.push(window[chordData][Math.floor(Math.random()*window[chordData].length)]);
+            }
         }
     }
+    return final;
 }
 function generateMelody(){
-    for(let i = 0; i < 16; i += 0.5){
-        
-        MathematicalMelody_MLPiano['melody'].push(i);
-    }
+    MathematicalMelody_MLPiano['melody'].push(generatedMelody());
     console.log(MathematicalMelody_MLPiano['melody']);
-    
-    
 }
 function generateBeats(){
     for(let i = 0; i < 16; i += 0.5){
