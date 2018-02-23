@@ -24,13 +24,28 @@
         <!-- uses a maxcdn so download library -->
         <!--<script src="https://cdn.jsdelivr.net/npm/deeplearn@latest"></script>-->
         
+        <script src="js/Chart.bundle.min.js"></script>
+        
         <!-- my script -->
         <script src="js/musicNotation.js"></script>
         <script src="js/script.js"></script>
         <script src="js/mlmusicwriter.js"></script>
+        <script src="js/displayData.js"></script>
         
     </head>
     <body>
+        <div style="width: 49%; height: 20%; float: left">
+            <canvas id="chord1Notes" width="400" height="400"></canvas>
+        </div>
+        <div style="width: 49%; height: 20%; float: left">
+            <canvas id="chord2Notes" width="400" height="400"></canvas>
+        </div>
+        <div style="width: 49%; height: 20%; float: left">
+            <canvas id="chord3Notes" width="400" height="400"></canvas>
+        </div>
+        <div style="width: 49%; height: 20%; float: left">
+            <canvas id="chord4Notes" width="400" height="400"></canvas>
+        </div>
         
     </body>
 </html>

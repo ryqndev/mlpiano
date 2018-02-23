@@ -51,20 +51,15 @@ function pullMusicData(){
 }
 
 
-function playMusic(){
-    
+function playMusic(){ 
     analyzeDataSet();
-
     //1. set tempo
     pullMusicData();
-    
     //2. set chords
     //prebuiltchords();
     chords(chordProgression);
-    
     //3. set baseline
     bassLine(chordProgression);
-    
     //4. set melody
     extractMelody();
     

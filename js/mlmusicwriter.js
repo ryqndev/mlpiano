@@ -24,10 +24,7 @@ function analyzeDataSet(){
     divideMelodyIntoChords(HeySoulSister_Train);
     y = [c1,c2,c3,c4];
     findOccurenceOfNote();
-    displayNoteOccurence(y);
-}
-function displayNoteOccurence(y){
-    
+    displayNoteOccurence();
 }
 function divideMelodyIntoChords(songData){
     for(let i = 0; i < songData['beats'].length; i++){
@@ -45,7 +42,7 @@ function divideMelodyIntoChords(songData){
 }
 //setup functions
 function findOccurenceOfNote(){
-    for(let i = 24; i <= 107; i++){
+    for(let i = 48; i <= 83; i++){
         noteOccurence["chord1"][i] = 0;
         noteOccurence["chord2"][i] = 0;
         noteOccurence["chord3"][i] = 0;
