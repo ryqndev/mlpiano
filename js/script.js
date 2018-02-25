@@ -46,7 +46,7 @@ function pullMusicData(){
     chordProgression = song_data['chordProgression'];
     
     for(i = 0; i < song_data['melodyNotes'].length; i++){
-        melody['notes'].push([song_data['melodyNotes'][i], (song_data['beats'][i]+16)*bps]);
+        melody['notes'].push([song_data['melodyNotes'][i], (song_data['beats'][i]+8)*bps]);
     }
 }
 
