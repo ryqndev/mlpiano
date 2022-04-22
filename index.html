@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            mlpiano
-        </title>
-        <script src="js/shim/Base64.js" type="text/javascript"></script>
-        <script src="js/shim/Base64binary.js" type="text/javascript"></script>
-        <script src="js/shim/WebAudioAPI.js" type="text/javascript"></script>
-        <!-- midi -->
-        <script src="js/midi/audioDetect.js" type="text/javascript"></script>
-        <script src="js/midi/gm.js" type="text/javascript"></script>
-        <script src="js/midi/loader.js" type="text/javascript"></script>
-        <script src="js/midi/plugin.audiotag.js" type="text/javascript"></script>
-        <script src="js/midi/plugin.webaudio.js" type="text/javascript"></script>
-        <script src="js/midi/plugin.webmidi.js" type="text/javascript"></script>
-        <!-- utils -->
-        <script src="js/util/dom_request_xhr.js" type="text/javascript"></script>
-        <script src="js/util/dom_request_script.js" type="text/javascript"></script>
-        
-        <!-- chart.js -->
-        <script src="js/Chart.bundle.min.js" type="text/javascript"></script>
-        
-        <!-- my script -->
-        <script src="js/musicNotation.js"></script>
-        <script src="js/mlmusicwriter.js"></script>
-        <script src="js/script.js"></script>
-        
-    </head>
-    <body>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        mlpiano
+    </title>
+    <script src="js/shim/Base64.js" type="text/javascript"></script>
+    <script src="js/shim/Base64binary.js" type="text/javascript"></script>
+    <script src="js/shim/WebAudioAPI.js" type="text/javascript"></script>
+    <!-- midi -->
+    <script src="js/midi/audioDetect.js" type="text/javascript"></script>
+    <script src="js/midi/gm.js" type="text/javascript"></script>
+    <script src="js/midi/loader.js" type="text/javascript"></script>
+    <script src="js/midi/plugin.audiotag.js" type="text/javascript"></script>
+    <script src="js/midi/plugin.webaudio.js" type="text/javascript"></script>
+    <script src="js/midi/plugin.webmidi.js" type="text/javascript"></script>
+    <!-- utils -->
+    <script src="js/util/dom_request_xhr.js" type="text/javascript"></script>
+    <script src="js/util/dom_request_script.js" type="text/javascript"></script>
+
+    <!-- chart.js -->
+    <script src="js/Chart.bundle.min.js" type="text/javascript"></script>
+
+    <!-- my script -->
+    <script src="js/musicNotation.js"></script>
+    <script src="js/mlmusicwriter.js"></script>
+    <script src="js/displayData.js"></script>
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <style>
+        canvas {
+            /* max-height: 200px; */
+            /* max-width: 50vw; */
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            display: grid;
+            max-height: 80vh;
+            max-width: 80vw;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-content: center;
+        }
+    </style>
+    <button id="play" disabled onclick="playMusic()">start</button>
+    <div class="container">
+        <canvas id="chord1Notes"></canvas>
+        <canvas id="chord2Notes"></canvas>
+        <canvas id="chord3Notes"></canvas>
+        <canvas id="chord4Notes"></canvas>
+    </div>
+
+</body>
+
 </html>

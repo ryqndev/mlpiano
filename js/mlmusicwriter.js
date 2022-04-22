@@ -13,11 +13,11 @@ var chordInput = [[52, 56, 59], [59, 63, 66], [49,52, 56], [57, 61, 64]];
 var melodyInput;
 function analyzeDataSet(){
     divideMelodyIntoChords(Demons_ImagineDragons);
-    //divideMelodyIntoChords(HeySoulSister_Train);
+    // divideMelodyIntoChords(HeySoulSister_Train);
     //divideMelodyIntoChords(HowFarIllGo_Disney);
     y = [c1,c2,c3,c4];
     findOccurenceOfNote();
-    //displayNoteOccurence();
+    displayNoteOccurence();
     generateMelody();
     generateBeats();
 }

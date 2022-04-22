@@ -1,3 +1,4 @@
+let playable = false;
 window.onload = function () {
 	MIDI.loadPlugin({
 		soundfontUrl: "./soundfont/",
@@ -6,7 +7,9 @@ window.onload = function () {
 			console.log(state, progress);
 		},
 		onsuccess: function() {
-            playMusic();
+            playable = true;
+            document.getElementById('play').removeAttribute('disabled');
+            // playMusic();
 		}
 	});
 };
